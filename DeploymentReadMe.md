@@ -30,7 +30,7 @@ npm run build
 6. Check the index.html file for Link
 <br />
 
-**To run : Update atlas with the public key for Permissions**
+**To run : WebApp on EC2**
 1. ssh -i CreatedKey.pem ec2-user@54.175.125.107
 2. sudo service docker start
 3. docker run -p 80:3000 anirudhrv1234/reactjs
