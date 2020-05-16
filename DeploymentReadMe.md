@@ -1,5 +1,5 @@
 # AWS COMMANDS
-**S3 - ReactJS Always set up with CloudFront for URL redirecting**
+**S3 - ReactJS set up with CloudFront for URL redirecting**
 1. Create bucket
 2. Allow public access
 3. Change bucket policy to : (Permissions/bucketpolicy)<br />
