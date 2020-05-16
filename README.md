@@ -84,7 +84,7 @@ Reactjs : 3000
 2. npm install
 3. npm start
 
-Go API: 8080
+Go API: 8080 - go get **link of library**
 1. cd API_Go
 2. go run main.go
 
