@@ -8,10 +8,10 @@
 5. Check ML output image
 6. Save output in .txt format
 7. Download ZIP
-a. Images
-b. Annotations
-c. IoU
-d. ML output
+  a. Images
+  b. Annotations
+  c. IoU
+  d. ML output
 
 **Process of measuring IoU**
 1. Each bounding box with label : "people" is considered (Iterated through)
@@ -37,14 +37,14 @@ d. ML output
 9. matplotlib is being used for testing images (display of images)
 10. Vanilla Js for functions and bits of React code
 
-**How it works**
+# How it works
 
-*Downloading and processing video :*
+**Downloading and processing video :**
 1. If a video is already available, place it in the main folder or download a video from YouTube(Y2 downloader or In-House application)
 2. Run the dividevideo.py to split the video into frames at random intervals between 2-5 seconds (considering 30 fps)
 3. The divided frames will be available in the Dividedframes folder
 
-*Annotation System :*
+**Annotation System :**
 1. The user signs up into the system by giving email,username,name and password
 2. Once the signUp is successful, the user is redirected to the upload page
 3. The user can upload upto 99 images at once and click viewimages
@@ -66,11 +66,14 @@ d. ML output
     4. Run iou.py to check the IoU of all images and store it in the IoU folder in IoU.txt
 9. The output of the machine learning algorithms can be seen by running checkmloutput.py, images will be stored in the mlimages folder
 
+# Steps to run the application
+**Prerequisites**
+1. may involve downloading mongo
+2. go libraries using go get link of library
+3. setting up django environment
+  a. Download and run yolo9000
+  b. Download and run TextBox++
 
-**System Architecture**
-SystemArchitecture.png
-
-# Steps to run the application (may involve downloading mongo,go libraries and setting up django environment)
 1. clone the git
 2. Download both weights from :
   1. https://drive.google.com/drive/folders/1pW4mKNOzOIf0Edyr4BppwnLpddCQ6Qch?usp=sharing
@@ -79,21 +82,21 @@ SystemArchitecture.png
 
 3. Place the weights in the Django/mlbackend folder with the other .py files
 
-Reactjs : 3000
+**WebApp (Reactjs) : port-3000**
 1. cd Client
 2. npm install
 3. npm start
 
-Go API: 8080 - go get **link of library**
+**API (Golang): port-8080**
 1. cd API_Go
 2. go run main.go
 
-Django: 8000 - Set UP YOLO9000/TextBox++ and then run
+**MLSystem (Django): port-8000**
 1. cd pythonbackend
 2. cd djangobackend
 3. python3 manage.py runserver
 
-NodeServer: 4000
+**Server (NodeJS): port-4000**
 1. cd NodeServer
 2. npm install
 3. npm install express-zip
@@ -106,15 +109,14 @@ NodeServer: 4000
 
 # if npm build is failing, install by : npm install <absent library>
 
-For building yolo9000 :
-$ pip install Cython
-$ git clone https://github.com/thtrieu/darkflow.git
-$ cd darkflow
-$ python3 setup.py build_ext --inplace
-$ pip install .
-# anywhere in the system
+**For building yolo9000 :**
+1. pip install Cython
+2. git clone https://github.com/thtrieu/darkflow.git
+3. cd darkflow
+4. python3 setup.py build_ext --inplace
+5. pip install .
 
-To get mongo working :
+**To get mongo working :**
 1. use GoDB
 2. db.createCollection("ImageNames")
 3. db.createCollection("UserData")
