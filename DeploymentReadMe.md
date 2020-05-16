@@ -1,8 +1,4 @@
 # AWS COMMANDS
-<br />**Important :**
-<br />
-update atlas with the public IP of Go API for Permissions
-<br />
 **S3 - ReactJS Always set up with CloudFront for URL redirecting**
 1. Create bucket
 2. Allow public access
@@ -56,6 +52,7 @@ Ex: d3sn2yu94s8xdo.cloudfront.net
 The solution is go to Cloud front -> Select you cloud distribution detail -> select tab General -> Select edit -> In this form Setup the property Default Root Object to index.html
 
 **EC2 - GO API IP:GET IP WHEN INSTANCE IS RUNNING**
+
 1. Create an EC2 instance and allow HTTP:80 connections in the security options
 2. chmod 400 goapikey.pem
 3. ssh -i goapikey.pem ec2-user@<IP-Address>
@@ -66,6 +63,8 @@ The solution is go to Cloud front -> Select you cloud distribution detail -> sel
 8. exit
 9. ssh -i goapikey.pem ec2-user@54.197.42.159
 10. docker run -p 80:8080 anirudhrv1234/goapi
+*Important :*
+update atlas with the public IP of Go API for Permissions
 
 **To run : Update atlas with the public key for Permissions**
 1. ssh -i goapikey.pem ec2-user@34.227.160.149
