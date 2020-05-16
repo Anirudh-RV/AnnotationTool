@@ -129,3 +129,5 @@
     3. Place the images and the output in the checkIoU folder
     4. Run iou.py to check the IoU of all images and store it in the IoU folder in IoU.txt
 9. The output of the machine learning algorithms can be seen by running checkmloutput.py, images will be stored in the mlimages folder
+
+**To migrate the application to cloud, please check DeploymentReadme**
