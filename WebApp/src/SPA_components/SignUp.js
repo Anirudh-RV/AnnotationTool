@@ -17,17 +17,19 @@ componentDidMount(){
 this.accountexists = false;
 this.userNameExists = false;
 this.handleEmail.bind(this);
+this.nodeserverurl = "http://localhost:4000"
+this.goapiurl = "http://localhost:8080"
+this.pythonbackendurl = "http://localhost:8000"
 }
 
 //addusertodatabase
-
 signupUser = () =>{
     var email = this.emailId.value;
     var username = this.userName.value;
     var fullname = this.fullName.value;
     var password = this.Password.value;
     var data = email+","+username+","+fullname+","+password
-    axios.post("http://localhost:8080/addusertodatabase",data)
+    axios.post(this.goapiurl+"/addusertodatabase",data)
       .then(res => { // then print response status
         const cookies = new Cookies()
         cookies.set('username',this.userName.value, { path: '/' })
@@ -42,6 +44,7 @@ signupUser = () =>{
       })
 
 }
+
 len = (checkvar) => {
   return checkvar.length;
 }
@@ -53,7 +56,7 @@ validateEmail = (email) => {
 
 checkforexistingUsername = (field,value) =>{
   var data = field+","+value;
-  axios.post("http://localhost:8080/validateinfo",data)
+  axios.post(this.goapiurl+"/validateinfo",data)
     .then(res => { // then print response status
       if(res.data["message"] == "Yes"){
         // existing emailID
@@ -72,7 +75,7 @@ checkforexistingUsername = (field,value) =>{
 
 checkforexistingEmail = (field,value,username) =>{
   var data = field+","+value;
-  axios.post("http://localhost:8080/validateinfo",data)
+  axios.post(this.goapiurl+"/validateinfo",data)
     .then(res => { // then print response status
       if(res.data["message"] == "Yes"){
         // existing emailID
@@ -170,11 +173,11 @@ handleSubmit = () =>{
 render() {
     return (
       <div className = "BackgroundSign">
-      <h1 className = "AppName" >End-to-end data curation and annotation platform</h1>
+      <h1 className = "AppName" >Annotation Tool</h1>
       <div className="Login">
         <form>
-        <p class = "SignInHead">X-P1</p>
-        <p class = "SignUpHead">Sign up to make data collection and image annotation easier.</p>
+        <p class = "SignInHead">Streamlining Manual Annotations</p>
+        <p class = "SignUpHead">Sign Up for some usage for the customer.</p>
 
         <FormGroup controlId="email" bsSize="large">
           <FormControl

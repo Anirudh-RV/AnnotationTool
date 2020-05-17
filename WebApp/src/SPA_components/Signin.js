@@ -10,10 +10,12 @@ import Cookies from 'universal-cookie';
 
 class Signin extends Component {
 //TODO : ADD Footer information
-// http://localhost:
 handleSubmit = () =>{
+  this.nodeserverurl = "http://localhost:4000"
+  this.goapiurl = "http://localhost:8080"
+  this.pythonbackendurl = "http://localhost:8000"
   var data = this.usercredentials.value+","+this.Password.value
-  axios.post("http://localhost:8080/authorizeuser",data)
+  axios.post(this.goapiurl+"/authorizeuser",data)
     .then(res => { // then print response status
       if(res.data["message"] == "No"){
         this.Error.innerHTML = "UserName or Password incorrect."
@@ -35,11 +37,11 @@ handleSubmit = () =>{
   render() {
     return (
       <div className = "BackgroundSign">
-      <h1 className = "AppName" >End-to-end data curation and annotation platform</h1>
+      <h1 className = "AppName" >Annotation Tool</h1>
       <div className="SignIn">
         <form onSubmit={this.handleSubmit}>
-        <p class = "SignInHead">X-P1</p>
-        <p class = "SignUpHead">Sign In to make data collection and image annotation easier.</p>
+        <p class = "SignInHead">Streamlining Manual Annotations</p>
+        <p class = "SignUpHead">Sign In for some usage for the customer.</p>
           <FormGroup controlId="email" bsSize="large">
             <FormControl
               autoFocus

@@ -12,7 +12,9 @@ class UploadMultipleFiles extends Component {
         selectedFile: null,
         loaded:0
       }
-
+      this.nodeserverurl = "http://localhost:4000"
+      this.goapiurl = "http://localhost:8080"
+      this.pythonbackendurl = "http://localhost:8000"
   }
 
 Logout = () =>{
@@ -20,7 +22,8 @@ Logout = () =>{
     cookies.remove('username');
     window.location.reload(false);
 }
-  checkMimeType=(event)=>{
+
+checkMimeType=(event)=>{
     //getting file object
     let files = event.target.files
     //define message container
@@ -41,16 +44,16 @@ Logout = () =>{
     }
    return true;
   }
-  maxSelectFile=(event)=>{
+maxSelectFile=(event)=>{
     let files = event.target.files
-        if (files.length > 1001) {
+        if (files.length > 101) {
            const msg = 'Only 10 images can be uploaded at a time'
            event.target.value = null
            return false;
       }
     return true;
  }
- checkFileSize=(event)=>{
+checkFileSize=(event)=>{
   let files = event.target.files
   let size = 2000000
   let err = [];
@@ -67,7 +70,7 @@ return true;
 }
 
 // using Api, add names of the images being uploaded to a database
-  addToBackendUsingApi = (files) =>{
+addToBackendUsingApi = (files) =>{
 
       var userName = this.props.location.state.userName;
 
@@ -78,7 +81,7 @@ return true;
       }
       fileNames = fileNames + files[files.length-1].name;
       // api call
-      axios.post("http://localhost:8080/insertimagedata",fileNames)
+      axios.post(this.goapiurl+"/insertimagedata",fileNames)
         .then(res => { // then print response status
           console.log(res)
         })
@@ -107,7 +110,15 @@ RedirecToEditPage = () =>{
 })
 
 }
-  onClickHandler = () => {
+onClickHandlerVideo = () =>{
+  var userName = this.props.location.state.userName;
+  this.props.history.push({
+    pathname: '/DownloadVideoComponent',
+    state: {userName: this.props.location.state.userName}
+})
+}
+
+onClickHandler = () => {
     const data = new FormData()
 
     // getting username from input
@@ -119,7 +130,7 @@ RedirecToEditPage = () =>{
     }
 
     // header carries information of username to backend with data
-    axios.post("http://localhost:4000/upload",data,
+    axios.post(this.nodeserverurl+"/upload",data,
     {
     headers: {
       userName: userName
@@ -153,6 +164,7 @@ render() {
                 <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
               </div>
               <button type="button" class="buttonclass" onClick={this.onClickHandler}>Upload</button>
+              <button type="button" class="buttonclass" onClick={this.onClickHandlerVideo}>Upload Video</button>
               <button type="button" class="buttonclass" onClick={this.RedirecToEditPage}>View Images</button>
               <button type="button" class="buttonclass" onClick={this.Logout}>Log out</button>
 	      </div>

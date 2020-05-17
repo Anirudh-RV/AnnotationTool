@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <div className="App">
       <IntroBar/>
-      <h1>HOME PAGE //TODO : ADD INTRODUCTION TO PROJECT</h1>
+      <h1>Annotation Tool</h1>
       </div>
     );
   }
