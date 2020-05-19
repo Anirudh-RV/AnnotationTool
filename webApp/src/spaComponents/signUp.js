@@ -9,7 +9,7 @@ import introBar from './introBar';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
-class signUp extends Component {
+class SignUp extends Component {
 //TODO : ADD Footer information
 
 componentDidMount(){
@@ -37,7 +37,7 @@ signUpUser = () =>{
         // redirect to CustomRouting with data
         this.props.history.push({
           pathname: '/customRouting',
-          state: {usercredentials: userName,checkval : res.data["message"]}
+          state: {userCredentials: userName,checkval : res.data["message"]}
       })
       })
       .catch(err => { // then print response status
@@ -172,10 +172,10 @@ handleSubmit = () =>{
 render() {
     return (
       <div className = "BackgroundSign">
-      <h1 className = "AppName" >Annotation Tool</h1>
-      <div className="Login">
+      <h1 className = "appName" >Annotation Tool</h1>
+      <div className="logIn">
         <form>
-        <p class = "SignInHead">Streamlining Manual Annotations</p>
+        <p class = "signInHead">Streamlining Manual Annotations</p>
         <p class = "signUpHead">Sign Up for some usage for the customer.</p>
 
         <FormGroup controlId="email" bsSize="large">
@@ -185,7 +185,7 @@ render() {
             ref = {c => this.emailId = c}
           />
         </FormGroup>
-        <p className = "ErrorMessage" ref = {c => this.emailError = c}></p>
+        <p className = "errorMessage" ref = {c => this.emailError = c}></p>
 
         <FormGroup controlId="userName" bsSize="large">
           <FormControl
@@ -194,7 +194,7 @@ render() {
             ref = {c => this.userName = c}
           />
         </FormGroup>
-        <p className = "ErrorMessage" ref = {c => this.userNameError = c}></p>
+        <p className = "errorMessage" ref = {c => this.userNameError = c}></p>
 
         <FormGroup controlId="Name" bsSize="large">
           <FormControl
@@ -203,7 +203,7 @@ render() {
             ref = {c => this.fullName = c}
           />
         </FormGroup>
-        <p className = "ErrorMessage" ref = {c => this.fullNameError = c}></p>
+        <p className = "errorMessage" ref = {c => this.fullNameError = c}></p>
 
         <FormGroup controlId="Password" bsSize="large">
           <FormControl
@@ -211,7 +211,7 @@ render() {
               ref = {c => this.Password = c}
               type="Password"
           />
-          <p className = "ErrorMessage" ref = {c => this.PasswordError = c}></p>
+          <p className = "errorMessage" ref = {c => this.PasswordError = c}></p>
 
         </FormGroup>
           <Button block bsSize="large" onClick={this.handleSubmit} type="button">
@@ -221,9 +221,9 @@ render() {
         </form>
       </div>
 
-      <div className="SecondBox">
-        <p className = "LinkToAccount">  Have an account?&nbsp;
-          <Link className="LinkToSignIn" to = './signin'>Log in</Link>
+      <div className="signUpSecondBox">
+        <p className = "linkToAccount">  Have an account?&nbsp;
+          <Link className="linkToSignIn" to = './signin'>Log in</Link>
         </p>
       </div>
     </div>
@@ -231,4 +231,4 @@ render() {
   }
 }
 
-export default signUp;
+export default SignUp;

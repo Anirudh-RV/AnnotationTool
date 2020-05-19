@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../cssComponents/App.css';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button'
 
-class workingArea extends Component {
+class WorkingArea extends Component {
 //TODO : ADD INTRODUCTION TO PROJECT
 
 constructor(){
@@ -89,7 +90,7 @@ saveAsTextFile = () =>{
   axios.post(this.nodeServerUrl+"/saveastextfile/",{
     userName : this.props.name,
     imageName : this.state.imageNames[this.state.index],
-    imagedata : this.outputdiv.innerHTML
+    imageData : this.outputdiv.innerHTML
     })
     .then(res => { // then print response status
       console.log(res)
@@ -259,16 +260,41 @@ render() {
         </div>
         <div className = "columnRight">
         <p>Right Side</p>
-          <button type="button" class="buttonclass" onClick={this.NextImage}>NEXT</button>
-          <button type="button" class="buttonclass" onClick={this.PrevImage}>PREVIOUS</button>
-          <button className="buttonclass" onClick={this.onButton}>ON</button>
-          <button className="buttonclass" onClick={this.offButton}>OFF</button>
-          <button className="buttonclass" onClick={this.saveAsTextFile}>SAVE</button>
-          <button className="buttonclass" onClick={this.getMlOutPut}>CHECK TEXTBOX++ ML OUTPUT</button>
-          <button className="buttonclass" onClick={this.getYoloMlOutPut}>CHECK YOLO ML OUTPUT</button>
+        <Button className="StartButton" block bsSize="large" onClick={this.NextImage} type="button">
+         NEXT
+       </Button>
 
-          <button className="buttonclass" onClick={this.downloadFiles}>DOWNLOAD DATA</button>
-          <button className="buttonclass" onClick={this.downloadAllFiles}>DOWNLOAD ALL-Please disable adblock for download</button>
+       <Button className="StartButton" block bsSize="large" onClick={this.PrevImage} type="button">
+         PREVIOUS
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.onButton} type="button">
+         ON
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.offButton} type="button">
+         OFF
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.saveAsTextFile} type="button">
+         SAVE
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.getMlOutPut} type="button">
+         CHECK TEXTBOX++ OUTPUT
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.getYoloMlOutPut} type="button">
+         CHECK YOLO OUTPUT
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.downloadFiles} type="button">
+         DOWNLOAD ANNOTATIONS
+       </Button>
+
+       <Button className="StartButton" block bsSize="large" onClick={this.downloadAllFiles} type="button">
+         DOWNLOAD ALL-Please disable adblock for download
+       </Button>
         </div>
         <p hidden ref = {c =>this.outputdiv = c}>
         </p>
@@ -277,4 +303,4 @@ render() {
   }
 }
 
-export default workingArea;
+export default WorkingArea;

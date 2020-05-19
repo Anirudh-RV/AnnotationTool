@@ -10,7 +10,7 @@ import Bootstrap from "react-bootstrap";
 import {FormGroup, FormControl} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-class downloadVideoComponent extends Component {
+class DownloadVideoComponent extends Component {
   constructor(props) {
     super(props);
       this.state = {
@@ -142,7 +142,7 @@ onClickHandler = () => {
     {
     headers: {
       userName: userName,
-      type: 'VideoUpload'
+      type: 'videoUpload'
     },
       onUploadProgress: ProgressEvent => {
         this.setState({
@@ -190,24 +190,26 @@ handleSubmit = () =>{
 
 render() {
     return (
-      <div className = "BackgroundSign">
-      <h2 className = "AppName" ref = {c => this.heading = c}></h2>
+      <div>
+      <h2 className = "appName" ref = {c => this.heading = c}></h2>
 
-      <div className="VideoUpload">
+      <div className="videoUpload">
         <label>Upload Videos from your System</label>
-        <input id="Video_Upload" type="file" class="form-control" multiple onChange={this.onChangeHandler}/>
+        <input id="videoUploadID" type="file" class="form-control" multiple onChange={this.onChangeHandler}/>
         <div class="form-group">
-          <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
+          <Progress id="progressBar" max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
         </div>
-        <button type="button" class="buttonclass" onClick={this.onClickHandler}>Upload</button>
+        <Button className="StartButton" block bsSize="large" onClick={this.onClickHandler} type="button">
+          Upload
+        </Button>
 
       </div>
 
 
-      <div className="SignIn">
+      <div className="signIn">
         <form onSubmit={this.handleSubmit}>
-        <p class = "SignInHead">Annotation Tool</p>
-        <p class = "SignUpHead">Upload Video From YouTube</p>
+        <p class = "signInHead">Annotation Tool</p>
+        <p class = "signUpHead">Upload A Video From YouTube</p>
         &nbsp;
           <FormGroup controlId="url" bsSize="large">
             <FormControl
@@ -233,13 +235,13 @@ render() {
             Start Annotation
           </Button>
           <br/>
-          <p className = "ErrorMessage" ref = {c => this.Message = c}></p>
+          <p className = "errorMessage" ref = {c => this.Message = c}></p>
         </form>
       </div>
 
-      <div className="SecondBoxSignIn" ref = {c => this.Info = c}>
-        <p className = "LinkToAccount"> Download complete and not redirecting?Click here&nbsp;
-          <Link className="LinkToSignUp" onClick={this.divideTheFrames}>Redirect</Link>
+      <div className="signIn" ref = {c => this.Info = c}>
+        <p className = "linkToAccount"> Download complete and not redirecting?Click here&nbsp;
+          <Link className="linkToSignUp" onClick={this.divideTheFrames}>Redirect</Link>
         </p>
       </div>
       </div>
@@ -247,4 +249,4 @@ render() {
   }
 }
 
-export default downloadVideoComponent;
+export default DownloadVideoComponent;

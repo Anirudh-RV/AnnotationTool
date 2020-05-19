@@ -215,6 +215,7 @@ def yolo(request):
     imageurl = dictdata["imageUrl"]
     coordinates = dictdata["Coordinates"]
     imagetype = imagename.split('.')[1]
+    print("ImageUrl: "+imageurl)
     print("ImageType: "+imagetype)
     saveimageindjango = 'assets/mloutput_'+username+"_"+imagename
     print("coordinates : "+coordinates)

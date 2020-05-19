@@ -1,5 +1,3 @@
-*.cfg
-cfg/
 *.h5
 *.weights
 *.avi
@@ -8,9 +6,9 @@ node_modules/
 Data/
 *.mp4
 *.jpg
-Yolo-9000/
 *.pyc
 *.zip
 *.jpeg
 *.jpg
 *.pdf
+*.DS_Store
