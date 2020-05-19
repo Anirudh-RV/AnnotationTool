@@ -14,18 +14,18 @@ handleSubmit = () =>{
   this.nodeServerUrl = "http://localhost:4000"
   this.goApiUrl = "http://localhost:8080"
   this.pythonBackEndUrl = "http://localhost:8000"
-  var data = this.usercredentials.value+","+this.Password.value
+  var data = this.userCredentials.value+","+this.Password.value
 
-  axios.post(this.goapiurl+"/authorizeuser",data)
+  axios.post(this.goApiUrl+"/authorizeuser",data)
     .then(res => { // then print response status
       if(res.data["message"] == "No"){
         this.Error.innerHTML = "UserName or Password incorrect."
       }else{
         const cookies = new Cookies()
-        cookies.set('username',this.usercredentials.value, { path: '/' })
+        cookies.set('username',this.userCredentials.value, { path: '/' })
         this.props.history.push({
-          pathname: '/customrouting',
-          state: {usercredentials: this.usercredentials.value, checkval : res.data["message"]}
+          pathname: '/customRouting',
+          state: {userCredentials: this.userCredentials.value, checkval : res.data["message"]}
         })
       }
     })
@@ -47,7 +47,7 @@ handleSubmit = () =>{
             <FormControl
               autoFocus
               placeholder="Username, or email"
-              ref = {c => this.usercredentials = c}
+              ref = {c => this.userCredentials = c}
             />
           </FormGroup>
           <FormGroup controlId="password" bsSize="large">

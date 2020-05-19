@@ -26,23 +26,23 @@ componentDidMount(){
 this.heading.innerHTML = this.props.location.state.userName+"</br>Annotate Data Directly From Videos";
 }
 
-dividetheframes = (type,name,current,total) =>{
+divideTheFrames = (type,name,current,total) =>{
   console.log("Type: "+type+", Name: "+name+", current: "+current+", total: "+total)
-  var username = this.props.location.state.userName
-  var imagetype = 'jpeg'
+  var userName = this.props.location.state.userName
+  var imageType = 'jpeg'
   var low = '1'
   var high = '5'
 
   if(type == "VideoUpload"){
-    var videoname =  name
-    var videourl = this.nodeServerUrl+'/img/'+username+'/videos/'+videoname
+    var videoName =  name
+    var videoUrl = this.nodeServerUrl+'/img/'+userName+'/videos/'+videoName
   }
   else if(type == "YouTube")
   {
-    var videoname =  this.videoname.value
-    var videourl = this.nodeServerUrl+'/videos/'+username+'/downloads/'+videoname+'.mp4'
+    var videoName =  this.videoName.value
+    var videoUrl = this.nodeServerUrl+'/videos/'+userName+'/downloads/'+videoName+'.mp4'
   }
-  var data = {'username':username,'videoname':videoname,'videourl':videourl,'imagetype':imagetype,'low':low,'high':high}
+  var data = {'userName':userName,'videoName':videoName,'videoUrl':videoUrl,'imageType':imageType,'low':low,'high':high}
 
   axios.post(this.pythonBackEndUrl+"/dividetheframes/",data)
     .then(res => { // then print response status
@@ -51,11 +51,11 @@ dividetheframes = (type,name,current,total) =>{
       console.log(res)
 
     if(type == "YouTube"){
-        this.gotoeditpage();
+        this.goToeditPage();
       }
     else{
       if(current == total-1){
-        this.gotoeditpage();
+        this.goToeditPage();
       }
     }
     })
@@ -127,7 +127,7 @@ onChangeHandler=event=>{
 onClickHandler = () => {
     const data = new FormData()
 
-    // getting username from input
+    // getting userName from input
     var userName = this.props.location.state.userName;
     var videoNames = []
     // filling FormData with selectedFiles(Array of objects)
@@ -137,7 +137,7 @@ onClickHandler = () => {
       data.append('file', this.state.selectedFile[x])
     }
 
-    // header carries information of username to backend with data
+    // header carries information of userName to backend with data
     axios.post(this.nodeServerUrl+"/upload",data,
     {
     headers: {
@@ -153,7 +153,7 @@ onClickHandler = () => {
     .then(res => { // then print response status
       for(var x = 0; x< videoNames.length; x++ ){
         console.log('file name: '+videoNames[x])
-        this.dividetheframes("VideoUpload",videoNames[x],x,videoNames.length)
+        this.divideTheFrames("VideoUpload",videoNames[x],x,videoNames.length)
       }
         // redirect to WorkingArea.js for viewing images
     })
@@ -162,15 +162,7 @@ onClickHandler = () => {
   })
 }
 
-
-wait = (ms) =>{
-  var d = new Date();
-  var d2 = null;
-  do { d2 = new Date(); }
-  while(d2-d < ms);
-}
-
-gotoeditpage = () =>{
+goToeditPage = () =>{
   var userName = this.props.location.state.userName;
   this.props.history.push({
     pathname: '/editPage',
@@ -181,9 +173,9 @@ gotoeditpage = () =>{
 handleSubmit = () =>{
   this.Message.innerHTML = "The process may take a few minutes..."
   axios.post(this.nodeServerUrl+"/download/",{
-    username : this.props.location.state.userName,
-    videoname : this.videoname.value,
-    videourl : this.videourl.value,
+    userName : this.props.location.state.userName,
+    videoName : this.videoName.value,
+    videoUrl : this.videoUrl.value,
   })
   .then(res => { // then print response status
     //toast.success('upload success')
@@ -200,7 +192,6 @@ render() {
     return (
       <div className = "BackgroundSign">
       <h2 className = "AppName" ref = {c => this.heading = c}></h2>
-
 
       <div className="VideoUpload">
         <label>Upload Videos from your System</label>
@@ -222,7 +213,7 @@ render() {
             <FormControl
               autoFocus
               placeholder="Enter the url of the youtube video"
-              ref = {c => this.videourl = c}
+              ref = {c => this.videoUrl = c}
             />
           </FormGroup>
 
@@ -230,7 +221,7 @@ render() {
             <FormControl
               autoFocus
               placeholder="Enter the name of the video"
-              ref = {c => this.videoname = c}
+              ref = {c => this.videoName = c}
             />
           </FormGroup>
 
@@ -238,7 +229,7 @@ render() {
             Download
           </Button>
 
-          <Button className="StartButton" block bsSize="large" onClick={this.dividetheframes} type="button">
+          <Button className="StartButton" block bsSize="large" onClick={this.divideTheFrames} type="button">
             Start Annotation
           </Button>
           <br/>
@@ -248,7 +239,7 @@ render() {
 
       <div className="SecondBoxSignIn" ref = {c => this.Info = c}>
         <p className = "LinkToAccount"> Download complete and not redirecting?Click here&nbsp;
-          <Link className="LinkToSignUp" onClick={this.dividetheframes}>Redirect</Link>
+          <Link className="LinkToSignUp" onClick={this.divideTheFrames}>Redirect</Link>
         </p>
       </div>
       </div>

@@ -26,12 +26,12 @@ class customRouting extends Component {
             <Switch />
               <Switch>
               <Route path="/upload" component={uploadMultipleFiles}/>
-              <Route path="/editPage" component={editPage}/>
-              <Route path="/downloadVideoComponent" component={downloadVideoComponent}/>
-              <Route path="/welcomePage" component={welcomePage}/>
+              <Route path="/editpage" component={editPage}/>
+              <Route path="/downloadvideocomponent" component={downloadVideoComponent}/>
+              <Route path="/welcomepage" component={welcomePage}/>
               <Redirect to={{
-            pathname: '/welcomePage',
-            state: {userName:this.props.location.state.usercredentials}
+            pathname: '/welcomepage',
+            state: {userName:this.props.location.state.userCredentials}
         }}
 />
              </Switch>

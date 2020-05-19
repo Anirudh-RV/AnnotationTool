@@ -37,7 +37,7 @@ StartAnnotation = () =>{
 })
 }
 
-Logout = () =>{
+logOut = () =>{
     const cookies = new Cookies()
     cookies.remove('username');
     window.location.reload(false);
@@ -71,7 +71,7 @@ render() {
       </div>
       <div className="SecondBoxSignIn" ref = {c => this.Info = c}>
         <p className = "LinkToAccount"> Click here when done &nbsp;
-          <Link className="LinkToSignUp" onClick={this.Logout}>LOGOUT</Link>
+          <Link className="LinkToSignUp" onClick={this.logOut}>logOut</Link>
         </p>
       </div>
       </div>

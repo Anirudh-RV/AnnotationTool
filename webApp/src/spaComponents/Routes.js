@@ -15,17 +15,17 @@ import Error from './Error';
 class Routes extends Component {
   render() {
     const cookies = new Cookies()
-    if(cookies.get('username')){
-      console.log(cookies.get('username'))
+    if(cookies.get('userName')){
+      console.log(cookies.get('userName'))
       return (
         <BrowserRouter>
          <div>
            <Switch />
              <Switch>
-             <Route path="/customRouting" component = {customRouting} />
+             <Route path="/customrouting" component = {customRouting} />
              <Redirect to={{
-                       pathname: '/customRouting',
-                       state: {usercredentials: cookies.get('username'),checkval : "Yes"}
+                       pathname: '/customrouting',
+                       state: {userCredentials: cookies.get('userName'),checkval : "Yes"}
                        }}
              />
             </Switch>
@@ -39,9 +39,9 @@ class Routes extends Component {
               <Switch />
                 <Switch>
                  <Route exact path="/" component={Home} />
-                 <Route path="/customRouting" component = {customRouting} />
-                 <Route path="/signUp" component = {signUp} />
-                 <Route path="/signIn" component= {signIn} />
+                 <Route path="/customrouting" component = {customRouting} />
+                 <Route path="/signup" component = {signUp} />
+                 <Route path="/signin" component= {signIn} />
                  <Route exact path = "/index.html" component = {Home} />
                  <Route path = "/error" component = {Error} />
                  <Route exact path = "/error.html" component = {Error} />

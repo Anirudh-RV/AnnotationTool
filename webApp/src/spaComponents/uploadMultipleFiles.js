@@ -17,9 +17,9 @@ class uploadMultipleFiles extends Component {
       this.pythonBackEndUrl = "http://localhost:8000"
   }
 
-Logout = () =>{
+logOut = () =>{
     const cookies = new Cookies()
-    cookies.remove('username');
+    cookies.remove('userName');
     window.location.reload(false);
 }
 
@@ -43,7 +43,8 @@ checkMimeType=(event)=>{
         event.target.value = null
     }
    return true;
-  }
+}
+
 maxSelectFile=(event)=>{
     let files = event.target.files
         if (files.length > 101) {
@@ -71,26 +72,25 @@ return true;
 
 // using Api, add names of the images being uploaded to a database
 addToBackendUsingApi = (files) =>{
-
       var userName = this.props.location.state.userName;
-
       var fileNames = userName+",";
+
       for(var x =0; x<files.length-1;x++)
       {
         fileNames = fileNames +files[x].name+ ",";
       }
       fileNames = fileNames + files[files.length-1].name;
       // api call
-      axios.post(this.goapiurl+"/insertimagedata",fileNames)
+      axios.post(this.goApiUrl+"/insertimagedata",fileNames)
         .then(res => { // then print response status
           console.log(res)
-        })
-        .catch(err => { // then print response status
+      })
+      .catch(err => { // then print response status
         console.log(err)
-        })
+    })
 }
 
-// &&    this.checkFileSize(event) taken out for unlimited uploads
+// && this.checkFileSize(event) taken out for unlimited uploads
 onChangeHandler=event=>{
   var files = event.target.files
   if(this.maxSelectFile(event) && this.checkMimeType(event)){
@@ -98,8 +98,8 @@ onChangeHandler=event=>{
      this.setState({
      selectedFile: files,
      loaded:0
-  })
-}
+   })
+  }
 }
 
 RedirecToEditPage = () =>{
@@ -107,8 +107,7 @@ RedirecToEditPage = () =>{
   this.props.history.push({
     pathname: '/EditPage',
     state: {userName: this.props.location.state.userName}
-})
-
+  })
 }
 
 onClickHandlerVideo = () =>{
@@ -116,22 +115,19 @@ onClickHandlerVideo = () =>{
   this.props.history.push({
     pathname: '/DownloadVideoComponent',
     state: {userName: this.props.location.state.userName}
-})
+  })
 }
 
 onClickHandler = () => {
     const data = new FormData()
-
-    // getting username from input
+    // getting userName from input
     var userName = this.props.location.state.userName;
-
     // filling FormData with selectedFiles(Array of objects)
     for(var x = 0; x<this.state.selectedFile.length; x++) {
       data.append('file', this.state.selectedFile[x])
     }
-
-    // header carries information of username to backend with data
-    axios.post(this.nodeserverurl+"/upload",data,
+    // header carries information of userName to backend with data
+    axios.post(this.nodeServerUrl+"/upload",data,
     {
     headers: {
       userName: userName
@@ -142,15 +138,14 @@ onClickHandler = () => {
         })
       },
     })
-      .then(res => { // then print response status
+    .then(res => { // then print response status
         this.addToBackendUsingApi(this.state.selectedFile)
         // redirect to WorkingArea.js for viewing images
-      })
-      .catch(err => { // then print response status
+    })
+    .catch(err => { // then print response status
       console.log(err)
-      })
-
-    }
+    })
+}
 
 render() {
     return (
@@ -166,7 +161,7 @@ render() {
               </div>
               <button type="button" class="buttonclass" onClick={this.onClickHandler}>Upload</button>
               <button type="button" class="buttonclass" onClick={this.RedirecToEditPage}>View Images</button>
-              <button type="button" class="buttonclass" onClick={this.Logout}>Log out</button>
+              <button type="button" class="buttonclass" onClick={this.logOut}>Log out</button>
 	      </div>
       </div>
     </div>
